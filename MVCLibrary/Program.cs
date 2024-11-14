@@ -1,4 +1,7 @@
+﻿using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MVCLibraryContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MVCLibraryContext") ?? throw new InvalidOperationException("Connection string 'MVCLibraryContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
